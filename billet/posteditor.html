@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Billet simple pour l'Alaska</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+
+	<body class="is-preload">
+<?php
+    if (isset($_POST['password']) AND $_POST['password'] ==  "alaska123456" AND isset($_POST['user_id']) AND $_POST['userName'] ==  "user_id" ) // Si le mot de passe  et l'identifiant est bon
+    {
+    // On affiche le formulaire d'article
+    ?>
+		<!-- Header -->
+		<section id="header">
+			<header class="major">
+				<h1>BILLET SIMPLE POUR L'ALASKA</h1>
+				<p>Jean Forteroche</p>
+			</header>
+		</section>
+
+		<!-- Contact -->
+		<section id="footer">
+			<div class="container">
+				<header class="major">
+					<h2 id="contact">Nouvelle publication</h2>
+				</header>
+
+				<form method="post" action="#">
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Titre du chapitre" /></div>
+						<div class="col-6 col-12-xsmall"><input type="date" name="date" id="date" placeholder="Date" /></div>
+						<div class="col-12"><textarea name="content" id="content" placeholder="Contenu du chapitre" rows="4"></textarea></div>
+						<div class="col-12">
+							<ul class="actions special">
+								<li><input type="submit" value="Envoyer" class="primary" /></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<footer>
+				<ul class="icons">
+					<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+				</ul>
+
+				<ul class="copyright">
+					<li><a href="#header">&copy; JEAN FORTEROCHE</a></li>
+					<li><a href="posteditor.html">CONNEXION</a></li>
+				</ul>
+			</footer>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
