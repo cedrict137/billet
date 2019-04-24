@@ -11,9 +11,7 @@ class MainModel{
     ////////////////////
 	public function __construct()
 	{
-		/*$this->db = new PDO('mysql:host=db5000047087.hosting-data.io;dbname=dbs42003;charset=utf8','dbu112508','admin123456');*/
-        $this->db = new PDO('mysql:host=localhost;dbname=billet;charset=utf8','root','');
-       
+		$this->db = new PDO('mysql:host=db5000047087.hosting-data.io;dbname=dbs42003;charset=utf8','******','*******');
     	$this->db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     	$this->db -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	}
