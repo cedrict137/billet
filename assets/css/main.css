@@ -85,7 +85,7 @@ input, select, textarea {
 		background-attachment: fixed,						fixed;
 		background-image: url("images/overlay.png"), url("../../images/pic011.jpg");
 		background-position: top left,					center center;
-		background-repeat: repeat,						none;
+		background-repeat: no-repeat;
 		background-size: auto,						cover;
 	}
 
@@ -2711,7 +2711,7 @@ input, select, textarea {
 		transition: opacity 0.5s ease-out;
 		background-attachment: fixed,							fixed;
 		background-position: top left,						center center;
-		background-repeat: repeat,							none;
+		background-repeat: no-repeat;
 		background-size: auto,							cover;
 		height: 100%;
 		left: 0;
