@@ -34,7 +34,7 @@ class BackCtrl {
 	    	if ((isset($_POST["userName"]))) {
 	    		require_once 'model/UserModel.php';
 	    		$userModel = new UserModel();
-	    		$test = $userModel->getUser($_POST['userName'], md5($_POST['password']), 1);
+	    		$test = $userModel->getUser($_POST['userName'], hash("sha1",$_POST['password']), 1);
 	    		if (empty($test)){
 	    			$todo = "login";
 	    			echo '<script>alert("Les identifiants saisis ne sont pas corrects. Veuillez réessayer.")</script>';	
