@@ -49,7 +49,7 @@ class CommentModel extends MainModel{
 		$resultat->execute(['state' => $_POST['state']]);
 	}
 
-	// PUBLISH ONE COMMENT ADMIN
+	// PUBLISH ONE COMMENT
 	public function publishOneComment($id){
 		$sql = "UPDATE `comment` SET state= :state WHERE id=" . $id;
 		$resultat = $this->db->prepare($sql);
