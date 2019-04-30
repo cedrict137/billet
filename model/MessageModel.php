@@ -28,7 +28,7 @@ class MessageModel extends MainModel{
 		}
 	}
 
-		// SHOW UNREAD MESSAGE ON ADMIN PAGE
+	// SHOW UNREAD MESSAGE ON ADMIN PAGE
 	public function getNewMessages(){
 		$sql = 'SELECT user_name, message, email, id, state, date_creation FROM message WHERE state = 0 ORDER BY id DESC';
 		$data = $this->db->query($sql);
@@ -42,14 +42,14 @@ class MessageModel extends MainModel{
 		return $data->fetchAll();
 	}
 
-	// DELETE MESSAGE
+	// DELETE MESSAGE BY ID
 	public function deleteOneMessage($id){
 		$sql = "DELETE FROM `message` WHERE id=" . $id;
 		$data = $this->db->query($sql);
 		return $data;
 	}
 
-	// REPORT COMMENT
+	// REPORT COMMENT BY ID
 	public function archiveOneMessage($id){
 		$sql = "UPDATE `message` SET state= :state WHERE id=" . $id;
 		$resultat = $this->db->prepare($sql);
