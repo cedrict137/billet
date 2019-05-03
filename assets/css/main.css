@@ -82,11 +82,11 @@ input, select, textarea {
 
 	html {
 		background-color: #313a3d;
-		background-attachment: fixed,						fixed;
+		background-attachment: fixed,				fixed;
 		background-image: url("images/overlay.png"), url("../../images/pic011.jpg");
-		background-position: top left,					center center;
-		background-repeat: no-repeat;
-		background-size: auto,						cover;
+		background-position: center center,					center center;
+		background-repeat: no-repeat,						no-repeat;
+		background-size: cover,						cover;
 	}
 
 	html.is-preload *, html.is-preload *:before, html.is-preload *:after {
@@ -2711,7 +2711,7 @@ input, select, textarea {
 		transition: opacity 0.5s ease-out;
 		background-attachment: fixed,							fixed;
 		background-position: top left,						center center;
-		background-repeat: no-repeat;
+		background-repeat: repeat,							none;
 		background-size: auto,							cover;
 		height: 100%;
 		left: 0;
