@@ -34,7 +34,11 @@ class CommentView{
 	public function showCommentsAdmin($dataArray){
 		$html = "";
 		for ($i=0; $i<count($dataArray); $i++) {	
-			$html.= '<div class="adminCom">
+			$html.= '<div class="adminCom">';
+				if ($dataArray[$i]["state"] == 1) {$html.='<span id="report">Signalé</span>';}
+				if ($dataArray[$i]["state"] == 0) {$html.='<span id="new">Nouveau</span>';}
+
+				$html.= '
 						<div class="adminComment">
 							<b>'.$dataArray[$i]["user_name"].'</b>
 							<p>'.$this->frDate($dataArray[$i]["date_creation"]).'</p>

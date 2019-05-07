@@ -38,6 +38,7 @@ class FrontCtrl {
 	//        CHAPTER PAGE        //
 	////////////////////////////////
 	private function chapter() {
+		global $safePost;
 		require_once 'controller/CommentCtrl.php';
 		$comment = new CommentCtrl();
 		$comment->addComment();
@@ -46,9 +47,9 @@ class FrontCtrl {
 		////////////////////////////////
 		//      REPORT   COMMENT      //
 		////////////////////////////////
-		if (isset($_POST['state']) && isset($_POST['id'])){
+		if (isset($safePost['state']) && isset($safePost['id'])){
 			require_once 'controller/CommentCtrl.php';
-			$id = $_POST['id'];
+			$id = $safePost['id'];
 			$rep = new CommentCtrl();
 			$rep->reportComment($id);
 			echo '<script>alert("Le commentaire a bien été signalé.")</script>';

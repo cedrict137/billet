@@ -23,6 +23,7 @@ class BackCtrl {
 	//   GET PAGE FONCTION        //
 	////////////////////////////////
 	public function getPage() {
+		global $safePost;
 		
 
 		$todo = $this->url[0];                                         // HOST/ADMIN/$TODO
@@ -31,15 +32,15 @@ class BackCtrl {
 
     	//IF NO SESSION TODO = LOGIN ELSE ADMIN PAGE
     	if (!isset ($_SESSION["userName"])) {
-	    	if ((isset($_POST["userName"]))) {
+	    	if ((isset($safePost["userName"]))) {
 	    		require_once 'model/UserModel.php';
 	    		$userModel = new UserModel();
-	    		$test = $userModel->getUser($_POST['userName'], md5($_POST['password']), 1);
+	    		$test = $userModel->getUser($safePost['userName'], hash("sha256",$safePost['password']), 1);
 	    		if (empty($test)){
 	    			$todo = "login";
 	    			echo '<script>alert("Les identifiants saisis ne sont pas corrects. Veuillez réessayer.")</script>';	
 	    		}
-	    		else $_SESSION['userName'] = $_POST['userName'];
+	    		else $_SESSION['userName'] = $safePost['userName'];
 	    	} 	
 	    	else $todo = "login";
 		}	
@@ -62,9 +63,10 @@ class BackCtrl {
 		////////////////////////////////
 		//      DELETE CHAPTER        //
 		////////////////////////////////
-		if (isset($_POST['chapterid'])){
+		global $safePost;
+		if (isset($safePost['chapterid'])){
 					require_once 'controller/PostCtrl.php';
-					$chapterid = $_POST['chapterid'];
+					$chapterid = $safePost['chapterid'];
 					$del = new PostCtrl();
 					$del->deleteChapter($chapterid);
 					echo '<script>alert("Le chapitre a bien été supprimé.")</script>';
@@ -79,12 +81,13 @@ class BackCtrl {
 	//EDIT CHAPTER + MODERATE COMMENT PAGE//
 	////////////////////////////////////////
 	private function chapter() {
+		global $safePost;
 
-		if (isset($_POST['state']) && isset($_POST['id'])){
+		if (isset($safePost['state']) && isset($safePost['id'])){
 			require_once 'controller/CommentCtrl.php';
-			$id = $_POST['id'];
+			$id = $safePost['id'];
 
-			switch ($_POST['state']){
+			switch ($safePost['state']){
 
 				case 2: //publish
 					$pub = new CommentCtrl();
@@ -134,6 +137,7 @@ class BackCtrl {
 		require_once 'view/MainView.php';
 		$newChapter = new PostCtrl();
 		$newChapter->addChapter();
+
 		return $this->view->mergeWithTemplate([], "addChapterForm");
 	}
 
@@ -141,15 +145,16 @@ class BackCtrl {
 	//     UNREAD  MESSAGE PAGE           //
 	////////////////////////////////////////
 	private function messages() {
+		global $safePost;
 		require_once 'model/MessageModel.php';
 		require_once 'controller/MessageCtrl.php';
 		require_once 'view/MainView.php';
 
-		if (isset($_POST['state']) && isset($_POST['id'])){
+		if (isset($safePost['state']) && isset($safePost['id'])){
 			require_once 'controller/MessageCtrl.php';
-			$id = $_POST['id'];
+			$id = $safePost['id'];
 
-			switch ($_POST['state']){
+			switch ($safePost['state']){
 
 				case 1: //archive message
 					$archive = new MessageCtrl();
@@ -173,15 +178,16 @@ class BackCtrl {
 	//     OLD   MESSAGE  PAGE            //
 	////////////////////////////////////////
 	private function oldmessages() {
+		global $safePost;
 		require_once 'model/MessageModel.php';
 		require_once 'controller/MessageCtrl.php';
 		require_once 'view/MainView.php';
 
-		if (isset($_POST['state']) && isset($_POST['id'])){
+		if (isset($safePost['state']) && isset($safePost['id'])){
 			require_once 'controller/MessageCtrl.php';
-			$id = $_POST['id'];
+			$id = $safePost['id'];
 
-			switch ($_POST['state']){
+			switch ($safePost['state']){
 
 				case 2: //delete message
 					$delete = new MessageCtrl();
@@ -191,6 +197,7 @@ class BackCtrl {
 			}
 		}
 
+		//SHOW OLD MESSAGES
 		$messages = new MessageCtrl();
 		return $this->view->mergeWithTemplate(["{{ messages }}" => $messages->showAllOldMessages()], "oldmessages");
 	}
