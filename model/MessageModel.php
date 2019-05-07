@@ -10,13 +10,14 @@ class MessageModel extends MainModel{
 	/// SEND A MESSAGE  ///
 	///////////////////////
 	public function sendOneMessage(){
+		global $safePost;
 
-		if (!empty($_POST['user_name']) && !empty($_POST['message']) && !empty($_POST['email'])){
+		if (!empty($safePost['user_name']) && !empty($safePost['message']) && !empty($safePost['email'])){
 				$values = array(
-		    		'user_name' => $_POST['user_name'],
-					'message' => $_POST['message'],
-					'state' => $_POST['state'],
-					'email' => $_POST['email']
+		    		'user_name' => $safePost['user_name'],
+					'message' => $safePost['message'],
+					'state' => $safePost['state'],
+					'email' => $safePost['email']
 				);
 
 			$sqlfuncs = array(
@@ -51,9 +52,10 @@ class MessageModel extends MainModel{
 
 	// REPORT COMMENT BY ID
 	public function archiveOneMessage($id){
+		global $safePost;
 		$sql = "UPDATE `message` SET state= :state WHERE id=" . $id;
 		$resultat = $this->db->prepare($sql);
-		$resultat->execute(['state' => $_POST['state']]);
+		$resultat->execute(['state' => $safePost['state']]);
 	}
 }
 
