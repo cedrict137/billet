@@ -134,6 +134,7 @@ class BackCtrl {
 		require_once 'view/MainView.php';
 		$newChapter = new PostCtrl();
 		$newChapter->addChapter();
+		
 		return $this->view->mergeWithTemplate([], "addChapterForm");
 	}
 
